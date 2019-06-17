@@ -1,0 +1,68 @@
+.border-bottom p{
+    border-bottom: 1px solid white;
+    display: inline;
+}
+
+form {
+
+    label {
+        display: block;
+        margin-bottom: 1em;    
+    }
+    
+    input[type="text"], input[type="email"]  {
+        background-color: black;
+        border: 1px solid white;
+        color: white;
+        padding: 15px;
+        font-family: "Apercu", Arial, sans-serif;
+        width: 100%;    
+        margin-bottom: 1em;
+
+        @include tablet{
+            font-size:18px;
+        }
+        @include desktop{
+            font-size:22px;
+        }
+        
+         &:focus {
+            outline: none;
+        }
+    }
+    
+    input[type="submit"] {
+        background-color: black;
+        border: 1px solid white;
+        color: white;
+        padding: 15px;
+        margin-top: 2em;
+        font-family: "Apercu", Arial, sans-serif;
+        &:focus {
+            outline: none;
+        }
+        
+        @include tablet{
+            font-size:18px;
+        }
+        @include desktop{
+            font-size:22px;
+        }
+        
+    }
+        
+        
+       
+    input[type="submit"] {
+        background-color: white;
+        color: black;
+        border: 1px solid white;
+        cursor: pointer;
+        
+        &:hover {
+            background-color: black;
+            color: white;
+        }
+    }
+    
+}

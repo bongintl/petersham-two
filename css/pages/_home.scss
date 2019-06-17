@@ -1,0 +1,54 @@
+.home-carousel{
+    
+    width: 100%;
+    height: 100vh;
+    transition: transform 0.5s;
+    
+    &__slide{
+        
+        position: relative;
+        white-space: nowrap;
+        display: inline-block;
+        width: 100vw;
+        height: 100%;
+        background-size: cover;
+        background-position: center center;
+        float: left;
+        
+        &:after{
+            display: block;
+            content: '';
+            position: absolute;
+            top: 50%;
+            width: 100%;
+            height: $border-width * 2;
+            margin-top: -$border-width;
+            background: white;
+            z-index: $border-z;
+            //display: none;
+            @include desktop{
+                display: block;
+            }
+            @include phone{
+                height: 2vw;
+                margin-top: -1vw;
+            }
+        }
+        
+    }
+    
+    &__caption{
+        
+        height: 66px;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        
+        @include phone {
+            height: 11vw;
+            margin-top: -1px;
+        }
+    }
+    
+}

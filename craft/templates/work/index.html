@@ -1,0 +1,64 @@
+{% extends "_layout" %}
+{% set title = "Work" %}
+
+{% block content %}
+
+    {% set featured = craft.entries.section('workOverview').first() %}
+    
+    {% if featured.heroVideo %}
+        {% include 'partials/video.html' with { url: featured.heroVideo, poster: featured.heroImage.first(), workType: featured.workType } %}
+    {% endif %}
+    
+    {% set params = craft.entries.section('work') %}
+    
+    {% set x = 0 %}
+    
+    {% for entry in params %}
+        
+        {% if x == 0 %}
+        
+            <div class="row">
+        
+        {% endif %}
+        
+        {% set size = entry.size.value %}
+        {% set nextEntrySize = 3 %}
+        
+        {% set nextEntry = entry.getNext(params) %}
+        
+        {% if nextEntry %}
+            {% set nextEntrySize = nextEntry.size.value %}
+        {% endif %}
+        
+        {% if x + size + nextEntrySize > 3 %}
+            {% set size = 3 - x %}
+        {% endif %}
+        
+        <a href="{{entry.url}}">
+        
+            <div class="col-{{ size * 4 }} work-thumb lazy-img" data-src="{{entry.thumbnail.first().getUrl('workThumbnail' ~ size)}}" style="color: {% include 'partials/color.html' with {workType: entry.workType} %}">
+                <div class="work-thumb__info">
+                    <p>
+                        <span class="work-thumb__type">{{entry.workType}}</span><br>
+                        {{entry.title}}
+                    </p>
+                </div>
+            </div>
+        
+        </a>
+        
+        {% set x = x + size %}
+        
+        {% if x == 3 %}
+        
+            </div>
+            
+            {% set x = 0 %}
+        
+        {% endif %}
+
+    
+    {% endfor %}
+
+
+{% endblock %}

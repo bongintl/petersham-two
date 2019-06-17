@@ -1,0 +1,64 @@
+
+{% for row in entry.contentRows %}
+{% if row.type == "copy" %}
+    
+
+    <div class="row row_copy {{ bgclass }} pad-top-4 pad-bottom-{% if loop.last %}6{% else %}4{% endif %}">
+        <div class="col-6 off-1">
+            {{ row.copy }}
+        </div>
+        
+        {% if loop.first and entry.purchaseLink != '' %}
+        
+        <div class="col-3 purchase">
+            
+            <a href="{{ entry.purchaseLink }}" class=" pad-top-1 pad-bottom-1 button" target="_blank" style="background: {% include 'partials/color.html' with { workType: entry.workType } %}">Buy tickets now</a>
+            
+            {% for row in entry.details %}
+                <div class="gap-top-{% if loop.first %}3{% else %}2{% endif %}">
+                    <h4>{{ row.heading }}</h4>
+                    {{ row.detailsContent }}
+                </div>
+            {% endfor %}
+            
+        </div>
+        
+        {% endif %}
+        
+    </div>
+    
+    {% elseif row.type == "quote" %}
+    
+    <div class="row row_quote {{ bgclass }} pad-top-6 pad-bottom-6">
+        <div class="col-7 off-1">
+            <h2 class="pad-bottom-2">{{ row.quoteText }}</h2>
+            <h3>{{ row.quoteAttribute }}</h3>
+        </div>
+    </div>
+        
+    {% elseif row.type == "video" %}
+
+    <div class="row">
+        <div class="col-12">
+            {% include 'partials/video.html' with { url: row.videoUrl, poster: row.videoImage.first(), workType: entry.workType } %}
+        </div>
+    </div>
+
+    {% elseif row.type == "image" %}
+
+    <div class="row">
+        
+        <div class="col-12 widescreen lazy-img" data-src="{{row.image.first().getUrl('wideFull')}}"></div>
+        
+    </div>
+
+    {% elseif row.type == "twoImages" %} 
+
+        <div class="row widescreen row_two-images">
+            {% for asset in row.images %}
+                <div class="col-6 lazy-img" data-src="{{ asset.getUrl('wideHalf') }}"></div>
+            {% endfor %}
+        </div>
+
+    {% endif %}
+{% endfor %}

@@ -1,0 +1,69 @@
+#border{
+    
+    position: absolute;
+    pointer-events: none;
+    z-index: $border-z;
+    
+    @include tablet{
+        height: $border-width;
+        top: 3em;
+        width: 100%;
+        background: white;
+    }
+    
+    @include phone{
+        height: 1vw;
+        top: 3.5em;
+    }
+    
+    @include desktop{
+        top: $border-inset;
+        bottom: $border-inset;
+        left: $border-inset;
+        right: $border-inset;
+        border-width: $border-width;
+        border-style: solid;
+        border-color: white;
+        background: none !important;
+    }
+    
+}
+
+#logo{
+    position: absolute;
+    top: 0;
+    left: $border-inset;
+    height: 33px;
+    margin-top: -$border-width/2 - 1;
+    transform: translateY(-50%);
+    z-index: $border-z;
+    
+    @include tablet {
+        margin-top: calc( 0.5vw - 1px );
+    }
+    
+    @include phone {
+        width: 100vw - $border-inset * 2;
+    }
+    
+    /*
+    
+    path, polygon {
+        
+        .theatre & {
+            fill: $theatre;
+        }
+        
+        .events & {
+            fill: $event;
+        }
+        
+        .festival & {
+            fill: $festival;
+        }
+        
+    }
+    
+    */
+    
+}

@@ -1,0 +1,51 @@
+.footer {
+    font-size: 0.75em;
+    color: white;
+    
+    li{
+        display: inline-block;
+        &:not(:last-child){
+            margin-right: 1.5em;
+        }
+    }
+    
+    @include tablet{
+        font-size: 0.75em;
+        background: black;
+        text-align: center;
+        padding: 2em 0;
+        & > * {
+            display: block;
+            &:not(:last-child){
+                margin-bottom: 2em;
+            }
+        }
+    }
+    
+    @include desktop{
+        
+        position: absolute;
+        bottom: 0;
+        left: $border-inset;
+        right: $border-inset;
+        height: $border-inset;
+        
+        > * {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+        }
+        
+        &__center{
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+        
+        &__right{
+            right: 0;
+        }
+             
+    }
+    
+   
+}

@@ -1,0 +1,71 @@
+{% extends "_layout" %}
+{% set title = "News" %}
+
+{% block content %}
+
+    {% paginate craft.entries.section('news').limit(10) as pageInfo, entries %}
+
+	{% for entry in entries %}
+	
+		<div class="header-image lazy-img" data-src="{% for asset in entry.heroImage %}{{ asset.url }}{% endfor %}">
+        	
+        	<div class="row bg-black news headline">
+        		<div class="pad-right-4 pad-bottom-1 pad-top-2">
+        			<a href="{{ entry.url }}">{{ entry.postDate.format('d/m/y') }}</a>
+    				<h1 class="pad-top-0-5">{{ entry.title }}</h1>
+    			</div>
+    		</div>
+    	
+        </div>       
+        
+        <div class="mobile-headline">
+            <div class="row bg-black headline">
+        		<div class="pad-right-4 pad-bottom-1 pad-top-2">
+    		        {% if entry.type == 'news' %}{{ entry.postDate.format('d/m/y') }}{% else %}<span class="underline type">{{ entry.workType.label }}</span>{% endif %}
+    				<h1 class="pad-top-0-5">{{ entry.title }}</h1>
+    			</div>
+    		</div>
+        </div>
+    
+        <div class="row row_copy bg-black pad-top-4 pad-bottom-6 {% if not pageInfo.prevUrl and not pageInfo.nextUrl %}last-news{% endif %}">
+            <div class="col-6 off-1">
+                
+                <!--{{ entry.contentRows.type('copy').first().copy }}-->
+                
+                
+                {{ entry.body }}
+                
+                <!-- <div class="pad-top-4">
+                	<a class="" href="{{ entry.url }}">Go to link</a>
+                </div>
+                -->
+            </div>
+        </div>
+    
+   	{% endfor %}
+   	
+   	{% if pageInfo.prevUrl or pageInfo.nextUrl %}
+   	
+       	<div class="row bg-black">
+       	    
+       	    <div class="col-10 off-1 pagination">
+       	        
+               	{% if pageInfo.prevUrl %}
+               	    <a href="{{ pageInfo.prevUrl }}">
+               	        <img class="pagination__arrow pagination__arrow_left" src="{{siteUrl}}assets/page-arrow.svg">
+               	    </a>
+               	{% endif %}
+               	
+                {% if pageInfo.nextUrl %}
+               	    <a href="{{ pageInfo.nextUrl }}">
+               	        <img class="pagination__arrow pagination__arrow_right" src="{{siteUrl}}assets/page-arrow.svg">
+               	    </a>
+                {% endif %}
+       	        
+       	    </div>
+       	    
+       	</div>
+   	
+   	{% endif %}
+	
+{% endblock %}

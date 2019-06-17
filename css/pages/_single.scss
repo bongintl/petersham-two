@@ -1,0 +1,92 @@
+.header-image {
+    width: 100%;
+    height: 50vw;
+    background-position: center center;
+    background-size: cover;
+    position: relative;
+    
+    @include phone{
+        height: 100vh;
+    }
+    
+    .row {
+        position: absolute;
+        bottom: 0;
+    }
+}
+
+a.button {
+    display: block;
+    border-bottom: 0;
+    width: 100%;
+    text-align: center;
+    color: black;
+}
+
+.purchase {
+    h4 {
+        display:inline-block;
+        border-bottom: 1px solid white;
+    }
+    
+    @include desktop{
+        margin-left: 8.3333%;
+    }
+    
+    @include tablet{
+        margin-left: 8.3333%;
+    }
+
+    @include phone{
+        margin-left: 0;
+    }
+    
+
+    
+}
+
+.headline {
+    padding-left: 8.3333%;
+}
+
+.row_two-images div {
+    height: 100%;
+    background-position: center center;
+    background-size: cover;
+}
+
+.mobile-headline {
+     display: none;
+}
+     
+@include phone{
+    
+    .row_copy, .row_quote{
+        padding: 2em 8.3333% 2em 8.333%;
+    }
+    
+    .purchase{
+        padding: 2rem 0;
+    }
+    
+    .row_two-images{
+        height: 200vw;
+        & > div{
+            height: 50%;
+        }
+    }
+     
+     .header-image {
+          position: relative;
+          z-index: -1;
+          
+          .headline {
+              display: none;
+          }   
+     }   
+     
+     .mobile-headline {
+         display: block;
+         margin-top: -110px;
+     }
+}

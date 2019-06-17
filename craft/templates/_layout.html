@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en-US">
+<head>
+	
+	<meta charset="utf-8" />
+	<title>{% if title is defined %}{{ title }} - {% endif %}{{ siteName }}</title>
+	<link rel="home" href="{{ siteUrl }}" />
+	<link rel="stylesheet" href="/css/main.css" />
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="icon" type="image/png" href="assets/PR_favicon.png">
+	<meta name="description" content="{{seo.description}}">
+
+</head>
+
+<body class="{% block bodyClass %}{% endblock %}">
+	
+	<div id="border" {% if borderColor %}style="border-color: {{borderColor}}; background: {{borderColor}}"{% endif %}>
+		{% if borderColor %}
+			{% include 'partials/logo.html' with {color: borderColor} %}
+		{% else %}
+			{% include 'partials/logo.html' with {color: '#fff'} %}
+		{% endif %}
+	</div>
+	
+	<div id="menu-toggle">
+		<span></span>
+	</div>
+	
+	<nav>
+		<ul>
+			
+			<li><a href="/">Home</a></li>
+			<li><a href="/about">About</a></li>
+			<li><a href="/work">Work</a></li>
+			<li><a href="/news">News</a></li>
+			<li><a href="/contact">Contact</a></li>
+			
+		</ul>
+	</nav>
+	
+	<main id="content" role="main">
+		{% block content %}
+		{% endblock %}
+	</main>
+
+	<footer class="footer">
+		
+		<span class="footer__left">
+			&copy; Petersham Road {{ now.year }}
+		</span>
+		
+		<span class="footer__right">
+			Design: <a href="http://templo.co.uk/" target="_blank">TEMPLO</a>
+		</span>
+		
+		<ul class="footer__center">
+			
+			<!--<li>-->
+			<!--	<a href="{{social.facebook}}" target="_blank">-->
+			<!--		<img src="{{siteUrl}}assets/icon-fb.svg">-->
+			<!--	</a>-->
+			<!--</li>-->
+			
+			<!--<li>-->
+			<!--	<a href="{{social.twitter}}" target="_blank">-->
+			<!--		<img src="{{siteUrl}}assets/icon-twitter.svg">-->
+			<!--	</a>-->
+			<!--</li>-->
+			
+			<li>
+				<a href="{{social.instagram}}" target="_blank">
+					<img src="{{siteUrl}}assets/icon-insta.svg">
+				</a>
+			</li>
+			
+			<li>
+				<a href="{{social.vimeo}}" target="_blank">
+					<img src="{{siteUrl}}assets/icon-vimeo.svg">
+				</a>
+			</li>
+			
+		</ul>
+		
+	</footer>
+	
+	<script src="https://code.jquery.com/jquery-1.12.4.min.js" integrity="sha256-ZosEbRLbNQzLpnKIkEdrPv7lOy9C27hHQ+Xp8a4MxAQ=" crossorigin="anonymous"></script>
+	<script src="{{siteUrl}}script.js"></script>
+	
+</body>
+</html>

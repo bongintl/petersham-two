@@ -1,0 +1,35 @@
+.last-news{
+    padding-bottom: 8vw;
+}
+
+.pagination{
+    
+    border-top: $border-width solid white;
+    padding-top: 2rem;
+    padding-bottom: 8vw;
+    
+    @include phone{
+        margin: 0 8.33333%;
+        width: 100% - 8.3333% * 2;
+    }
+    
+    a{
+        text-decoration: none;
+        border: none;
+    }
+    
+    &__arrow{
+        height: 6rem;
+        
+        &_left{
+            float: left;
+        }
+        
+        &_right{
+            float: right;
+            transform: rotate(180deg);
+        }
+        
+    }
+    
+}

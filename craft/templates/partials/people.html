@@ -1,0 +1,29 @@
+<div class="{{ bgclass }} people pad-bottom-6">
+    <div class="row pad-top-6 pad-bottom-6">
+        <div class="col-4 off-4">
+            <h5><span class="underline">Our team</span></h5>
+        </div>
+    </div>
+    
+    {% for person in entry.people %}
+    
+        <div class="row pad-bottom-4">
+            <div class="col-8 off-2">
+                <div class="row">
+
+                    <div class="col-6 people__image lazy-img" data-src="{{person.image.first().getUrl('personSquare')}}"></div>
+                    
+                    <div class="col-6 people__copy bg-white pad-2">
+                        <div class="pad-bottom-2">
+                            <h6>{{ person.peopleName }}</h6>
+                            <h6>{{ person.role }}</h6>
+                        </div>
+                        {{ person.copy }}
+                    </div>
+                    
+                </div>
+            </div>
+        </div>
+        
+    {% endfor %}
+</div>

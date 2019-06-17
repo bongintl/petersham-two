@@ -1,0 +1,43 @@
+.widescreen {
+    height: 62.5vw;
+    background-position: center center;
+    background-size: cover;
+    
+    @include phone{
+        height: 100vw;
+    }
+    
+}
+
+.underline, 
+.underline p { 
+    border-bottom: 1px solid white; 
+}
+
+.no-underline,
+a.no-underline {
+    border-bottom: 0 !important;
+}
+
+.bg-light-grey { background-color: $light-grey; }
+.bg-black { background-color: black; }
+.bg-white { background-color: white; color: black; }
+
+.bg-light-grey,
+.bg-black { 
+    color: white;
+    
+    a {
+        border-bottom: 1px solid white;
+        &:hover {
+            border-bottom: 0;
+        }
+    }
+}
+
+
+/*
+.theatre { @include color($theatre) }
+.events { @include color($event) }
+.festival { @include color($festival) }
+*/

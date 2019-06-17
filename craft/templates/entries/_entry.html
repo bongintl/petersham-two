@@ -1,0 +1,44 @@
+{% set borderColor %}{% include 'partials/color.html' with { workType: entry.workType } %}{% endset %}
+
+{% extends "_layout" %}
+
+{% block bodyClass %}{{entry.workType}}{% endblock %}
+
+{% block content %}
+
+{% if entry.type == 'news' or entry.type == 'about' %}
+	{% set bgclass = 'bg-black' %}
+{% else %}
+	{% set bgclass = 'bg-light-grey' %}
+{% endif %}
+	    
+    <div class="header-image lazy-img" data-src="{{entry.heroImage.first().getUrl('wideFull')}}">
+    	
+    	<div class="row {{ bgclass }} headline">
+    		<div class="pad-right-4 pad-bottom-1 pad-top-1">
+		        {% if entry.type == 'news' %}{{ entry.postDate.format('d/m/y') }}{% else %}
+		        <!--<span class="underline type">{{ entry.workType }}</span>{% endif %}-->
+				<h1 class="pad-top-0-5">{{ entry.title }}</h1>
+			</div>
+		</div>
+	
+    </div>
+        
+        
+    <div class="mobile-headline">
+        <div class="row {{ bgclass }} headline">
+    		<div class="pad-right-4 pad-bottom-1 pad-top-2">
+		        {% if entry.type == 'news' %}{{ entry.postDate.format('d/m/y') }}{% else %}<span class="underline type">{{ entry.workType }}</span>{% endif %}
+				<h1 class="pad-top-0-5">{{ entry.title }}</h1>
+			</div>
+		</div>
+    </div>
+    
+    	
+    {% include "partials/contentRows" %}
+    
+    {% if entry.type == 'about' %}
+    	{% include "partials/people" %}
+    {% endif %}
+    
+{% endblock %}

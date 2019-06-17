@@ -1,0 +1,37 @@
+.people {
+    h5 {
+        text-align: center;
+    }
+    
+    &__copy{
+        
+        @include desktop{
+            left: -50%;
+            height: 32.5vw;
+        }
+    }
+    
+    &__image{
+        background-size: cover;
+        background-position: center center;
+        min-height: 32.5vw;
+        @include tablet{
+            min-height: 100vw * 8/12 - 8.333vw * 2;
+        }
+        @include phone{
+            min-height: 100vw - 8.333vw * 2;
+        }
+        @include desktop{
+            left: 50%;
+        }
+    }
+    
+    &__copy,
+    &__image{
+        @include tablet{
+            width: 100% - 8.333% * 2;
+            margin-left: 8.3333%;
+        }
+    }
+
+}

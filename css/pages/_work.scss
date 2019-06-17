@@ -1,0 +1,73 @@
+.work-thumb{
+    
+    background-size: cover;
+    background-position: center center;
+    height: 37.5vw;
+    @include phone{
+        height: 100vw;
+    }
+    
+    /*
+    
+    &.events{
+        color: $event;
+    }
+    
+    &.festival{
+        color: $festival;
+    }
+    
+    &.theatre{
+        color: $theatre;
+    }
+    
+    */
+    
+    &__info{
+        
+        transition: opacity .2s;
+        background: $light-grey;
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        padding: 0 0.5em;
+        
+        @include desktop{
+            width: 100%;
+            height: 100%;
+            opacity: 0;
+            bottom: auto;
+            //z-index: $over-border-z;
+            
+        }
+
+        p{
+            
+            @include desktop{
+        
+                position: absolute;
+                width: 100%;
+                top: 50%;
+                left: 50%;
+                transform: translate(-50%, -50%);
+                text-align: center;
+                padding: 0 $border-inset;
+                
+            }
+        
+        }
+        
+    }
+    
+    &__type{
+        text-decoration: underline;
+        text-transform: capitalize;
+    }
+    
+    &:hover{
+        .work-thumb__info{
+            opacity: 1;
+        }
+    }
+    
+}

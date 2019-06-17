@@ -1,0 +1,163 @@
+#menu-toggle{
+    
+    $line-weight: 4px;
+    $width: 3rem;
+    $height: $line-weight * 5;
+    
+    position: absolute;
+    width: $width;
+    height: $width;
+    z-index: $border-z;
+    cursor: pointer;
+    
+    @include tablet{
+        top: 0;
+        right: 0;
+        background: black;
+    }
+    
+    @include desktop{
+        right: $border-inset;
+        top: $border-inset / 2;
+        transform: translateY(-50%);
+    }
+    
+    span, span:before, span:after{
+        display: block;
+        content: '';
+        background: white;
+        position: absolute;
+        transition: background .2s, transform .2s;
+        width: 100%;
+        @include tablet{
+            height: $line-weight / 2;
+        }
+        @include desktop{
+            height: $line-weight;
+        }
+    }
+    
+    span{
+        top: 50%;
+        margin-top: -$line-weight/2;
+        
+        @include tablet{
+            width: 70%;
+            left: 15%;
+        }
+        
+        @include desktop{
+            width: 100%;
+        }
+        
+        &:before{
+            transform: translateY(-$height/2);
+        }
+        
+        &:after{
+            transform: translateY($height/2);
+        }
+        
+    }
+    
+    .menu-open & {
+        
+        span {
+            
+            background: transparent;
+            
+            &:before{
+                transform: rotate(-45deg);
+            }
+            
+            &:after{
+                transform: rotate(45deg);
+            }
+            
+        }
+    }
+    
+}
+
+nav {
+    
+    position: fixed;
+    top: 0;
+    z-index: $under-border-z;
+    background: black;
+    color: white;
+    width: 100%;
+    transform: translateY(-100%);
+    transition: transform 0.2s;
+    
+    padding: $border-inset * 2 10% $border-inset * 2 10%;
+    
+    @include desktop{
+        padding: $border-inset * 2 $border-inset * 2 $border-inset 60%;
+    }
+    
+    .menu-open & {
+        transform: none;
+    }
+    
+    ul{
+        
+        list-style: none;
+        
+        li{
+            line-height: 1;
+        }
+        
+        li:not(:last-child){
+            margin-bottom: 1em;
+        }
+        
+        @include desktop {
+        
+            a{
+                border: 4px solid transparent;
+                padding: 0 0.25em;
+                &:hover{
+                    border: 4px solid white;
+                }
+            }
+        
+        }
+        
+    }
+    
+}
+
+body.menu-open{
+    overflow: hidden;
+}
+
+@include tablet{
+    
+    #border{
+        transition: transform 0.2s;
+        body.menu-open &{
+            transform: translateY( calc( #{ $border-inset * 4 } + #{ 1em * $num-menu-items * 2 - 1 } ) );
+        }
+    }
+    
+    .menu-open main{
+        transform: translateY( calc( #{ $border-inset * 4 } + #{ 1em * $num-menu-items * 2 - 1 } ) );
+    }
+    
+}
+
+main{
+    transition: transform 0.2s;
+    overflow-x: hidden;
+}
+
+.menu-open main{
+    transform: translateY( calc( #{ $border-inset * 3 } + #{ 1em * $num-menu-items * 2 - 1 } ) );
+}
+
+@include tablet{
+    .menu-open footer{
+        transform: translateY( calc( #{ $border-inset * 3 } + #{ 1em * $num-menu-items * 2 - 1 } ) );
+    }
+}

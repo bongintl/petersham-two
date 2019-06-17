@@ -1,0 +1,50 @@
+@mixin color($type) {
+    h3 {
+        color: $type;
+    }
+    .button {
+        background-color: $type;
+        border: 1px solid rgba(0,0,0,0);
+        &:hover {
+            background-color: rgba(0,0,0,0);
+            border: 1px solid $type;
+            color: $type;
+        }
+    }
+    #border{
+        @include tablet{
+            background: $type;
+        }
+        border-color: $type;
+    }
+}
+
+@mixin breakpoint($point) {
+  @if $point == tablet {
+     @media (max-width: 1024px) { @content; }
+  }
+  @else if $point == phone {
+     @media (max-width: 667px) { @content; }
+  }
+  @else if $point == desktop {
+      @media (min-width: 1025px) { @content; }
+  }
+}
+
+@mixin phone {
+    @include breakpoint(phone){
+        @content;
+    }
+}
+
+@mixin tablet {
+    @include breakpoint(tablet){
+        @content;
+    }
+}
+
+@mixin desktop {
+    @include breakpoint(desktop){
+        @content;
+    }
+}
